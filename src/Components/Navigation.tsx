@@ -1,25 +1,23 @@
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
-const Wrapper = styled.div`
-  width: 80vw;
+const Wrapper = styled.div<{ isMobile: boolean }>`
+  width: ${(props) => (props.isMobile ? "80vw" : "100vw")};
   margin: auto;
-  height: 300px;
-  min-width: 500px;
-  background-color: #ffffff;
-  display: table;
-  height: 8vh;
-  min-height: 50px;
-`;
-
-const Nav = styled.div`
-  display: table-cell;
-  vertical-align: middle;
+  min-width: 200px;
+  background-color: ${(props) => (props.isMobile ? "whitesmoke" : "white")};
+  height: ${(props) => (props.isMobile ? "50px" : "40vh")};
+  min-height: ${(props) => (props.isMobile ? "50px" : "120px")};
+  align-items: ${(props) => !props.isMobile && "center"};
+  display: ${(props) => !props.isMobile && "flex"};
+  animation-duration: 2s;
 `;
 
 const Logo = styled.div`
   //background-color: #5a87af;
   float: left;
-  height: 70%;
+  height: 35px;
+  margin-top: 7.5px;
   width: 200px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -28,9 +26,11 @@ const Logo = styled.div`
 `;
 
 const Bar = styled.div`
-  height: 70%;
-  width: 50px;
+  height: 30px;
+  width: 30px;
+  margin-top: 10px;
   //background-color: aqua;
+  margin-right: 10px;
   float: right;
   background-size: contain;
   background-repeat: no-repeat;
@@ -38,13 +38,25 @@ const Bar = styled.div`
   background-image: url("/img/bar.png");
 `;
 
+const LogoItem = styled.div`
+  height: 25vh;
+  width: 25vw;
+  min-height: 120px;
+  min-width: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("/img/sample.jpg");
+  //background-color: #ae7730;
+  margin: auto;
+`;
+
 function Navigation() {
+  const isMobile = useMediaQuery({ query: "(min-width: 800px)" });
   return (
-    <Wrapper>
-      <Nav>
-        <Logo />
-        <Bar />
-      </Nav>
+    <Wrapper isMobile={isMobile}>
+      {isMobile ? <Logo /> : <LogoItem />}
+      {isMobile && <Bar />}
     </Wrapper>
   );
 }

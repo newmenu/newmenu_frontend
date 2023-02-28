@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   background-color: #c8c8c8;
-  //width: 80vw;
-  //margin: auto;
 `;
 
 function App() {
