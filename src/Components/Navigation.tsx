@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 const Wrapper = styled.div<{ isMobile: boolean }>`
-  width: ${(props) => (props.isMobile ? "80vw" : "100vw")};
+  width: ${(props) => (props.isMobile ? "90vw" : "100vw")};
   margin: auto;
   min-width: 200px;
-  background-color: ${(props) => (props.isMobile ? "whitesmoke" : "white")};
+  background-color: ${(props) => (props.isMobile ? "whitesmoke" : "#fedada")};
   height: ${(props) => (props.isMobile ? "50px" : "40vh")};
   min-height: ${(props) => (props.isMobile ? "50px" : "120px")};
   align-items: ${(props) => !props.isMobile && "center"};
@@ -46,7 +46,7 @@ const LogoItem = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/img/sample.jpg");
+  background-image: url("/img/sample.png");
   //background-color: #ae7730;
   margin: auto;
 `;
@@ -56,7 +56,7 @@ function Navigation() {
   return (
     <Wrapper isMobile={isMobile}>
       {isMobile ? <Logo /> : <LogoItem />}
-      {isMobile && <Bar />}
+      <Bar />
     </Wrapper>
   );
 }
