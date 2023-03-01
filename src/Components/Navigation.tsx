@@ -10,7 +10,6 @@ const Wrapper = styled.div<{ isMobile: boolean }>`
   min-height: ${(props) => (props.isMobile ? "50px" : "120px")};
   align-items: ${(props) => !props.isMobile && "center"};
   display: ${(props) => !props.isMobile && "flex"};
-  animation-duration: 2s;
 `;
 
 const Logo = styled.div`
