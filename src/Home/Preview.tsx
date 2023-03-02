@@ -1,70 +1,55 @@
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
-const Wrapper = styled.div`
+const MainImg = styled.div<{ isMobile: boolean }>`
+  height: ${(props) => (props.isMobile ? "70vh" : "50vh")};
+  width: ${(props) => (props.isMobile ? "70vh" : "100vw")};
+  min-height: ${(props) => (props.isMobile ? "400px" : "200px")};
+  min-width: ${(props) => (props.isMobile ? "400px" : "200px")};
+  //background-color: rgb(227, 171, 171);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("/img/previewsample.png");
+  position: absolute;
+  top: ${(props) => (props.isMobile ? "10vh" : "5vh")};
+`;
+
+const Wrapper = styled.div<{ isMobile: boolean }>`
   //background-color: aquamarine;
-  width: 90vw;
-  height: 100vh;
+  width: ${(props) => (props.isMobile ? "50vw" : "100vw")};
+  height: ${(props) => (props.isMobile ? "100vh" : "60vh")};
   margin: auto;
   text-align: center;
   justify-content: center;
   position: relative;
-  min-height: 500px;
-  min-width: 500px;
-`;
-
-const Layer = styled.div`
-  width: 90vw;
-  height: 90vh;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.1;
-  background-position: center;
-  background-image: url("/img/previewsample.png");
-`;
-
-const MainImg = styled.div<{ isMobile: boolean }>`
-  position: absolute;
-  bottom: 20vh;
-  left: ${(props) => (props.isMobile ? "20vw" : "15vw")};
-  height: 60vh;
-  width: min(60vh, 60vw);
-  min-height: 300px;
-  min-width: 300px;
-  //background-color: #e3abab;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url("/img/previewsample.png");
+  min-height: ${(props) => (props.isMobile ? "500px" : "200px")};
+  min-width: ${(props) => (props.isMobile ? "500px" : "200px")};
 `;
 
 const ExpBox = styled.div`
   //background-color: blue;
-  height: 30vh;
-  //width: 30vw;
   position: absolute;
-  bottom: 0;
-  left: min(60vh, 60vw);
+  left: 25vw;
   min-height: 100px;
   min-width: 300px;
   white-space: nowrap;
+  bottom: 20vh;
 `;
 
 const Name = styled.div`
   //background-color: yellow;
-  height: 21vh;
-  font-size: 10vh;
+  font-size: 3.5em;
   text-align: left;
-  padding-top: 11vh;
   font-family: "SEBANG_Gothic_Bold", sans-serif;
+  text-shadow: 3px 3px 2px rgb(0, 0, 0, 0.2);
 `;
 
 const Exp = styled.div`
   //background-color: purple;
-  height: 9vh;
-  font-size: 3vh;
+  font-size: 1em;
   text-align: left;
-  padding-top: 1vh;
+  padding-top: 5px;
   font-family: "Pretendard-Regular", sans-serif;
 `;
 
@@ -72,16 +57,14 @@ function Preview() {
   const isMobile = useMediaQuery({ query: "(min-width: 800px)" });
 
   return (
-    <Wrapper>
-      <Layer />
-      <MainImg isMobile={isMobile}>
-        {isMobile && (
-          <ExpBox>
-            <Name>딸기 샌드위치</Name>
-            <Exp>GS편의점 | 2400원</Exp>
-          </ExpBox>
-        )}
-      </MainImg>
+    <Wrapper isMobile={isMobile}>
+      <MainImg isMobile={isMobile} />
+      {isMobile && (
+        <ExpBox>
+          <Name>딸기 샌드위치</Name>
+          <Exp>GS편의점 | 2400원</Exp>
+        </ExpBox>
+      )}
     </Wrapper>
   );
 }

@@ -55,7 +55,7 @@ function Navigation() {
   return (
     <Wrapper isMobile={isMobile}>
       {isMobile ? <Logo /> : <LogoItem />}
-      <Bar />
+      {isMobile && <Bar />}
     </Wrapper>
   );
 }
