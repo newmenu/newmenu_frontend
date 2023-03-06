@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
-const Wrapper = styled.div<{ isMobile: boolean }>`
-  width: ${(props) => (props.isMobile ? "90vw" : "100vw")};
+const Wrapper = styled.div`
+  background-color: #ffa1bd;
+`;
+
+const Nav = styled.div<{ isMobile: boolean }>`
+  width: ${(props) => (props.isMobile ? "95vw" : "100vw")};
   margin: auto;
   min-width: 200px;
-  background-color: ${(props) => (props.isMobile ? "whitesmoke" : "#fedada")};
-  height: ${(props) => (props.isMobile ? "50px" : "40vh")};
+  background-color: ${(props) => (props.isMobile ? "#FFA1BD" : "#fedada")};
+  height: ${(props) => (props.isMobile ? "8vh" : "40vh")};
   min-height: ${(props) => (props.isMobile ? "50px" : "120px")};
   align-items: ${(props) => !props.isMobile && "center"};
   display: ${(props) => !props.isMobile && "flex"};
@@ -15,21 +19,25 @@ const Wrapper = styled.div<{ isMobile: boolean }>`
 const Logo = styled.div`
   //background-color: #5a87af;
   float: left;
-  height: 35px;
-  margin-top: 7.5px;
-  width: 200px;
+  height: 5.6vh;
+  min-height: 35px;
+  margin-top: max(1.2vh, 7.5px);
+  width: 32vh;
+  min-width: 200px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/img/t_logo.png");
+  background-image: url("/img/logo.png");
 `;
 
 const Bar = styled.div`
-  height: 30px;
-  width: 30px;
-  margin-top: 10px;
+  height: 4.8vh;
+  width: 4.8vh;
+  min-height: 30px;
+  min-width: 30px;
+  margin-top: max(1.6vh, 10px);
   //background-color: aqua;
-  margin-right: 10px;
+  //margin-right: 10px;
   float: right;
   background-size: contain;
   background-repeat: no-repeat;
@@ -53,9 +61,11 @@ const LogoItem = styled.div`
 function Navigation() {
   const isMobile = useMediaQuery({ query: "(min-width: 800px)" });
   return (
-    <Wrapper isMobile={isMobile}>
-      {isMobile ? <Logo /> : <LogoItem />}
-      {isMobile && <Bar />}
+    <Wrapper>
+      <Nav isMobile={isMobile}>
+        {isMobile ? <Logo /> : <LogoItem />}
+        {isMobile && <Bar />}
+      </Nav>
     </Wrapper>
   );
 }

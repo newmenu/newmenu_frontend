@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
-const MainImg = styled.div<{ isMobile: boolean }>`
+const MainImg = styled.div<{ isMobile: boolean; imgsrc: string }>`
   height: ${(props) => (props.isMobile ? "70vh" : "50vh")};
   width: ${(props) => (props.isMobile ? "70vh" : "100vw")};
   min-height: ${(props) => (props.isMobile ? "400px" : "200px")};
@@ -10,7 +10,7 @@ const MainImg = styled.div<{ isMobile: boolean }>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/img/previewsample.png");
+  background-image: url(${(props) => props.imgsrc});
   position: absolute;
   top: ${(props) => (props.isMobile ? "10vh" : "5vh")};
 `;
@@ -53,16 +53,22 @@ const Exp = styled.div`
   font-family: "Pretendard-Regular", sans-serif;
 `;
 
-function Preview() {
+interface IProp {
+  imgsrc: string;
+  name: string;
+  exp: string;
+}
+
+function Preview({ imgsrc, name, exp }: IProp) {
   const isMobile = useMediaQuery({ query: "(min-width: 800px)" });
 
   return (
     <Wrapper isMobile={isMobile}>
-      <MainImg isMobile={isMobile} />
+      <MainImg isMobile={isMobile} imgsrc={imgsrc} />
       {isMobile && (
         <ExpBox>
-          <Name>딸기 샌드위치</Name>
-          <Exp>GS편의점 | 2400원</Exp>
+          <Name>{name}</Name>
+          <Exp>{exp}</Exp>
         </ExpBox>
       )}
     </Wrapper>
