@@ -1,110 +1,35 @@
-import Preview from "./Home/Preview";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import styled from "styled-components";
 import Navigation from "./Components/Navigation";
-import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+import { useEffect, useState } from "react";
 
-const sampleArr = [
-  {
-    imgsrc: "/img/previewsample.png",
-    name: "딸기 샌드위치",
-    exp: "GS편의점 | 2400원",
-  },
-  {
-    imgsrc: "/img/previewsample2.png",
-    name: "연세우유 우유생크림빵",
-    exp: "CU편의점 | 2700원",
-  },
-  {
-    imgsrc: "/img/previewsample3.png",
-    name: "바질크림 불닭우동",
-    exp: "농심 | 3600원",
-  },
-  {
-    imgsrc: "/img/previewsample4.png",
-    name: "티즐 피치 우롱티",
-    exp: "웅진 | 1300원",
-  },
-  {
-    imgsrc: "/img/previewsample5.png",
-    name: "상쾌환",
-    exp: "큐원 | 2500원",
-  },
-];
-
-const Wrapper = styled.div`
-  //background-color: #e1cece;
-  height: 92vh;
-  width: 90vw;
-  margin: auto;
-`;
-
-const Box = styled(motion.div)<{ src: string }>`
-  height: 100%;
-  width: 30vw;
-  float: left;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url(${(props) => props.src});
-  min-height: 540px;
-  min-width: 320px;
-  opacity: 0.5;
-  position: relative;
-`;
-
-const Boxvariant = {
-  hover: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const Layer = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  opacity: 0;
-  h1 {
-    color: #df3c3c;
-    font-size: 4em;
-    margin-top: 30vh;
-    font-family: "SEBANG_Gothic_Bold", sans-serif;
-    -webkit-text-stroke: 2px white;
-    //text-shadow: 10px rgba(255, 255, 255, 1);
-  }
-`;
-
-const LayerVariants = {
-  hover: {
-    opacity: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    transition: {
-      delay: 0.5,
-      duration: 0.5,
-    },
-  },
-};
-
-const Banner = styled.div`
-  height: 30vh;
+const Banner = styled.div<{ url: string; isMobile: boolean }>`
+  height: ${(props) => (props.isMobile ? "30vh" : "20vh")};
   width: 100vw;
-  min-height: 100px;
-  min-width: 640px;
+  min-height: ${(props) => (props.isMobile ? "100px" : "100px")};
+  min-width: ${(props) => (props.isMobile ? "640px" : "300px")};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("img/banner.png");
+  background-image: url(${(props) => props.url});
 `;
 
 function Home() {
+  const isMobile = useMediaQuery({ query: "(min-width: 600px)" });
+  const [url, setUrl] = useState("/img/banner.png");
+  useEffect(() => {
+    if (isMobile) {
+      setUrl("/img/banner.png");
+    } else {
+      setUrl("/img/banner_mini.png");
+    }
+  }, [isMobile]);
   return (
     <>
       <Navigation />
-      <Banner />
+      <Banner url={url} isMobile={isMobile} />
     </>
   );
   /* <Swiper>

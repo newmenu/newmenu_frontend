@@ -9,9 +9,9 @@ const Nav = styled.div<{ isMobile: boolean }>`
   width: ${(props) => (props.isMobile ? "95vw" : "100vw")};
   margin: auto;
   min-width: 200px;
-  background-color: ${(props) => (props.isMobile ? "#FFA1BD" : "#fedada")};
-  height: ${(props) => (props.isMobile ? "8vh" : "40vh")};
-  min-height: ${(props) => (props.isMobile ? "50px" : "120px")};
+  background-color: "#FFA1BD";
+  height: 8vh;
+  min-height: 40px;
   align-items: ${(props) => !props.isMobile && "center"};
   display: ${(props) => !props.isMobile && "flex"};
 `;
@@ -46,20 +46,21 @@ const Bar = styled.div`
 `;
 
 const LogoItem = styled.div`
-  height: 25vh;
-  width: 25vw;
-  min-height: 120px;
-  min-width: 120px;
-  background-size: contain;
+  height: 7vh;
+  margin-top: 0.5vh;
+  width: 14vh;
+  min-height: 40px;
+  min-width: 80px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/img/sample.png");
+  background-image: url("/img/logo_mini.png");
   //background-color: #ae7730;
   margin: auto;
 `;
 
 function Navigation() {
-  const isMobile = useMediaQuery({ query: "(min-width: 800px)" });
+  const isMobile = useMediaQuery({ query: "(min-width: 600px)" });
   return (
     <Wrapper>
       <Nav isMobile={isMobile}>
